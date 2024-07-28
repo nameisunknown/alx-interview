@@ -14,6 +14,7 @@ def pascal_triangle(n):
     """
 
     list_toBeReturned = []
+
     if n <= 0:
         return []
 
