@@ -27,3 +27,4 @@ def pascal_triangle(n):
                     )
 
     return list_toBeReturned
+
