@@ -1,6 +1,8 @@
 #!/usr/bin/python3
 
-"""This module is about pascal_triangle() and for alx-interview"""
+"""
+This module is about pascal_triangle() and for alx-interview
+"""
 
 
 def pascal_triangle(n):
