@@ -24,7 +24,7 @@ def pascal_triangle(n):
             else:
                 list_toBeReturned[row].append(
                     list_toBeReturned[row - 1][column - 1] + list_toBeReturned[row - 1][column]
-                    )
+                )
 
     return list_toBeReturned
 
