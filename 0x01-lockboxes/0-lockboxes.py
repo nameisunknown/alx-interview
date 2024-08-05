@@ -25,4 +25,3 @@ def canUnlockAll(boxes: list):
         if not box_status:
             return False
     return result
-
