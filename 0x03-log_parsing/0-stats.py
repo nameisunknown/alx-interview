@@ -1,5 +1,7 @@
 #!/usr/bin/python3
-"""This module reads stdin line by line and computes metrics"""
+"""
+This module reads stdin line by line and computes metrics
+"""
 
 import sys
 import re
@@ -40,4 +42,3 @@ print("File size: {}".format(file_size))
 for key, value in sorted(status_dict.items()):
     if value > 0:
         print("{}: {}".format(key, value))
-
