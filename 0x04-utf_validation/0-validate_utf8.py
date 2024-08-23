@@ -1,35 +1,31 @@
 #!/usr/bin/python3
 """
-This module contains a method: valudUTF8() for UTF-8 encoding
+This module validates if a given data set represents a valid UTF-8 encoding.
 """
 
-
 def validUTF8(data):
-    """
-    determines if a given data set represents a valid UTF-8 encoding.
-    """
+    # Number of bytes in the current UTF-8 character
+    num_bytes = 0
 
-    def validateBytes(start, n):
-        """
-        Helper function to check if the data is a valid UTF-8 encoding.
-        """
-        for i in range(start + 1, start + n + 1):
-            if i >= len(data) or data[i] >> 6 != 0b10:
+    # Masks to check the significant bits of each byte
+    mask1 = 1 << 7  # 10000000
+    mask2 = 1 << 6  # 01000000
+
+    for num in data:
+        mask = 1 << 7
+        if num_bytes == 0:
+            # Determine the number of bytes in the UTF-8 character
+            while mask & num:
+                num_bytes += 1
+                mask = mask >> 1
+            if num_bytes == 0:
+                continue
+            if num_bytes == 1 or num_bytes > 4:
                 return False
-        return True
-
-    i = 0
-    while i < len(data):
-        if data[i] >> 7 == 0:
-            i += 1
-        elif data[i] >> 5 == 0b110 and validateBytes(i, 1):
-            i += 2
-        elif data[i] >> 4 == 0b1110 and validateBytes(i, 2):
-            i += 3
-        elif data[i] >> 3 == 0b11110 and validateBytes(i, 3):
-            i += 4
         else:
-            return False
+            # Check that the next byte starts with '10'
+            if not (num & mask1 and not (num & mask2)):
+                return False
+        num_bytes -= 1
 
-    return True
-
+    return num_bytes == 0
